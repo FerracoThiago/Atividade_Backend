@@ -42,6 +42,20 @@ export class UserController{
                 where: {
                     id:userId as string
                 },
+                include:{
+                    produtos:{
+                        select:{
+                            id:true,
+                            titulo:true,
+                        }
+                    },
+                    pedidos:{
+                        select:{
+                            id:true
+            
+                    }
+                },
+                },
             });
 
             response.status(200).json(foundUser)
