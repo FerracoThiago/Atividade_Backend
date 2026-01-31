@@ -1,3 +1,4 @@
+
 import { prisma } from "../config/prisma";
 import { Request, Response } from 'express';
 import { Prisma } from "../generated/prisma/client";
@@ -41,6 +42,20 @@ export class UserController{
             const foundUser = await prisma.user.findUnique({
                 where: {
                     id:userId as string
+                },
+                include:{
+                    produtos:{
+                        select:{
+                            id:true,
+                            titulo:true,
+                        }
+                    },
+                    pedidos:{
+                        select:{
+                            id:true
+            
+                    }
+                },
                 },
             });
 
