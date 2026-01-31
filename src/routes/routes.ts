@@ -9,5 +9,7 @@ router.get("/users",UserController.readAllUsers);
 router.put("/user/:userId",UserController.updateUser);
 //router.put("/upsert/:userId",UserController.upsertUser);
 router.delete("/user/:userId",UserController.deleteUser);
+router.delete("/users",UserController.deleteAllUsers);
+
 
 export default router

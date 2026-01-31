@@ -176,7 +176,7 @@ export class UserController{
         }
     }
 
-    public static async deleteAllUser(request:Request,response:Response){
+    public static async deleteAllUsers(request:Request,response:Response){
         try {
 
             const deletedUser = await prisma.user.deleteMany();

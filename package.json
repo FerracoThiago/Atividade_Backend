@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx ts-node-dev --transpile-only --no-notify src/server.ts",
     "migrate": "npx prisma migrate dev --name init",
-    "seed": "npx ts-node --project ./tsconfig.json src/models/seed/seeder.ts",
+    "seed": "npx prisma db seed",
     "studio": "npx prisma studio",
     "generate": "npx prisma generate",
     "reset": "npx prisma generate && npx prisma db push && npx prisma migrate reset"
@@ -16,7 +16,7 @@
   "license": "ISC",
   "prisma": {
     "schema": "src/models/schema.prisma",
-    "seed": "node --require ts-node/register ./src/models/seed/seeder.ts"
+    "seed": "ts-node src/models/seed.ts"
   },
   "type": "commonjs",
   "devDependencies": {
@@ -29,6 +29,7 @@
     "express": "^5.2.1",
     "prisma": "^7.3.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
