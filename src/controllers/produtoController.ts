@@ -10,7 +10,7 @@ export class ProdutoController{
         try {
             
 
-            const {preco, categoria, data_publicacao, descricao, titulo,condicao,usuarioId} = request.body
+            const {preco, categoria, data_publicacao, descricao, titulo,condicao,userId} = request.body
 
             const createInput: Prisma.ProdutoCreateInput = {
                 preco:preco,
@@ -19,9 +19,7 @@ export class ProdutoController{
                 descricao:descricao,
                 titulo:titulo,
                 condicao:condicao,
-                usuarios:{
-                    connect:usuarioId.map((id: number) => ({ id:Number(id) })),
-                }
+                user:{connect:{id:userId}}
 
             }
 
@@ -49,18 +47,13 @@ export class ProdutoController{
                     id:Number(produtoId)
                 },
                 include:{
-                    usuarios:{
+                    user:{
                         select:{
-                            id:true,
                             nome:true,
+                            telefone:true,
+
                         }
                     },
-                    pedidos:{
-                        select:{
-                            id:true
-            
-                    }
-                },
                 },
             });
 
@@ -76,7 +69,17 @@ export class ProdutoController{
         try {
 
 
-            const produtos = await prisma.produto.findMany();
+            const produtos = await prisma.produto.findMany({
+                include:{
+                    user:{
+                        select:{
+                            nome:true,
+                            telefone:true,
+                            email:true
+                        }
+                    },
+                },
+            });
             
 
             response.status(200).json(produtos)
@@ -91,7 +94,7 @@ export class ProdutoController{
         try {
             
             const {produtoId} = request.params
-            const {preco, categoria, data_publicacao, descricao, titulo,condicao,usuarios} = request.body
+            const {preco, categoria, data_publicacao, descricao, titulo,condicao,userId} = request.body
 
             const createInput: Prisma.ProdutoUpdateInput = {
                 preco:preco,
@@ -100,7 +103,7 @@ export class ProdutoController{
                 descricao:descricao,
                 titulo:titulo,
                 condicao:condicao,
-                usuarios:usuarios
+                user:{connect:{id:userId}}
 
             }
 
@@ -125,7 +128,7 @@ export class ProdutoController{
         try {
             
             const {produtoId} = request.params
-            const {preco, categoria, data_publicacao, descricao, titulo,condicao,usuarios} = request.body
+            const {preco, categoria, data_publicacao, descricao, titulo,condicao,userId} = request.body
 
             const createInput: Prisma.ProdutoCreateInput = {
                 preco:preco,
@@ -134,7 +137,7 @@ export class ProdutoController{
                 descricao:descricao,
                 titulo:titulo,
                 condicao:condicao,
-                usuarios:usuarios
+                user:{connect:{id:userId}}
 
             }
             
@@ -145,7 +148,7 @@ export class ProdutoController{
                 descricao:descricao,
                 titulo:titulo,
                 condicao:condicao,
-                usuarios:usuarios
+                user:{connect:{id:userId}}  
 
             }
 

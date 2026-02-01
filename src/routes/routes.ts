@@ -2,6 +2,7 @@
 import {Router} from "express"
 import { UserController } from "../controllers/userController";
 import { ProdutoController } from "../controllers/produtoController";
+import { PedidoController } from "../controllers/pedidoController";
 const router = Router();
 
 //User Routes
@@ -22,4 +23,16 @@ router.put("/produto/:produtoId",ProdutoController.updateProduto);
 router.put("/upsert/:produtoId",ProdutoController.upsertProduto);
 router.delete("/produto/:produtoId",ProdutoController.deleteProduto);
 router.delete("/produtos",ProdutoController.deleteAllProdutos);
+
+//Pedido Routes
+
+router.post("/pedido",PedidoController.createPedido);
+router.get("/pedido/:pedidoId",PedidoController.readPedido);
+router.get("/pedidos",PedidoController.readAllPedidos);
+router.put("/pedido/:pedidoId",PedidoController.updatePedido);
+//router.put("/upsert/:pedidoId",PedidoController.upsertPedido); não achei que faça sentido upsert em pedidos
+router.delete("/pedido/:pedidoId",PedidoController.deletePedido);
+router.delete("/pedidos",PedidoController.deleteAllPedidos);
+
+
 export default router

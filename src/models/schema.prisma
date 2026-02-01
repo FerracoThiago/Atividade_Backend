@@ -34,26 +34,28 @@ model Produto{
   id Int @id @default(autoincrement())
   preco Float
   categoria String
-  data_publicacao Int @unique
+  data_publicacao Int
   descricao String?
   titulo String
   condicao String
+  
+  userId String
+  user User @relation(fields: [userId], references: [id])
 
-  usuarios User[]
   pedidos Pedido[]
 }
 
 model Pedido{
 
   id String @id @default(cuid())
-  quantidade Int @unique
-  data Int @unique
+  quantidade Int 
+  data Int
   valor Float
-  forma_pagamento Float
+  forma_pagamento String
   status String
 
 
-  userId String @unique
+  userId String
   user User @relation(fields: [userId], references: [id])
   produtos Produto[]
 

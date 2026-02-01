@@ -48,6 +48,7 @@ export class UserController{
                         select:{
                             id:true,
                             titulo:true,
+                            
                         }
                     },
                     pedidos:{
