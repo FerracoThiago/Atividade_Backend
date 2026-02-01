@@ -22,7 +22,7 @@ model User{
   id String @id @default(cuid())
   nome String
   email String @unique
-  senha Int
+  senha String
   telefone Int?
   cpf String @unique
 
@@ -34,12 +34,12 @@ model Produto{
   id Int @id @default(autoincrement())
   preco Float
   categoria String
-  data_publicacao DateTime @unique
+  data_publicacao Int @unique
   descricao String?
   titulo String
   condicao String
 
-  usarios User[]
+  usuarios User[]
   pedidos Pedido[]
 }
 
@@ -47,7 +47,7 @@ model Pedido{
 
   id String @id @default(cuid())
   quantidade Int @unique
-  data DateTime @unique
+  data Int @unique
   valor Float
   forma_pagamento Float
   status String
