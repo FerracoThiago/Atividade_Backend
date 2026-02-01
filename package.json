@@ -1,29 +1,40 @@
 {
-  "name": "Aula",
+  "name": "Atividade_Backend",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx ts-node-dev --transpile-only --no-notify src/server.ts"
+    "start": "npx ts-node-dev --transpile-only --no-notify src/server.ts",
+    "migrate": "npx prisma migrate dev --name init",
+    "seed": "npx prisma db seed",
+    "studio": "npx prisma studio",
+    "generate": "npx prisma generate",
+    "reset": "npx prisma generate && npx prisma db push && npx prisma migrate reset"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "prisma": {
+    "schema": "src/models/schema.prisma",
+    "seed": "npx ts-node src/models/seed.ts"
+  },
+  "type": "commonjs",
   "devDependencies": {
-    "@prisma/client": "^7.2.0",
+    "@prisma/client": "^7.3.0",
     "@types/express": "^5.0.6",
-    "@types/node": "^25.0.9",
+    "@types/node": "^25.1.0",
     "@types/pg": "^8.16.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "prisma": "^7.2.0",
+    "prisma": "^7.3.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.2.0",
-    "pg": "^8.17.1"
+    "@faker-js/faker": "^10.2.0",
+    "@prisma/adapter-pg": "^7.3.0",
+    "pg": "^8.18.0"
   }
 }
